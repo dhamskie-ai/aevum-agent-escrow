@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#f5f7f6">
+    <title>AgentEscrow — Escrow tUSD8 untuk kerja agen</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="importmap">
+      {"imports":{"ethers":"https://cdn.jsdelivr.net/npm/ethers@6/+esm"}}
+    </script>
+    <script type="module" src="app.js"></script>
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#top"><span class="brand-mark">A</span><span>AgentEscrow</span></a>
+      <div class="wallet-area">
+        <span id="network-indicator" class="network-indicator">Aevum testnet</span>
+        <button id="connect-button" class="button button-dark">Connect MetaMask</button>
+      </div>
+    </header>
+    <main id="top" class="page">
+      <section class="intro">
+        <div>
+          <p class="eyebrow">Aevum testnet · Chain 44005</p>
+          <h1>Escrow tUSD8 untuk kerja agen</h1>
+          <p class="intro-copy">Kelola pembayaran kerja dengan dana yang ditahan sampai pekerjaan diserahkan.</p>
+        </div>
+        <div class="balance-strip" aria-live="polite">
+          <div><span class="balance-label">Saldo tUSD8</span><strong id="token-balance">—</strong></div>
+          <div><span class="balance-label">Saldo tQDAY</span><strong id="native-balance">—</strong></div>
+        </div>
+      </section>
+
+      <div id="deployment-notice" class="notice notice-warn" hidden>Kontrak belum di-deploy, isi alamat setelah deploy.</div>
+      <div id="app-message" class="notice" role="status" aria-live="polite" hidden></div>
+
+      <section class="create-section">
+        <div class="section-heading"><div><p class="eyebrow">Pembayaran baru</p><h2>Buat escrow</h2></div></div>
+        <form id="create-form" class="create-form">
+          <label>Alamat worker<input id="worker-input" name="worker" type="text" placeholder="0x…" autocomplete="off" required></label>
+          <label>Alamat arbiter<input id="arbiter-input" name="arbiter" type="text" placeholder="0x…" autocomplete="off" required></label>
+          <label>Jumlah tUSD8<input id="amount-input" name="amount" type="number" min="0.000001" step="0.000001" placeholder="0.00" required></label>
+          <label>Batas waktu<input id="deadline-input" name="deadline" type="datetime-local" required></label>
+          <button id="create-button" class="button button-accent" type="submit" disabled>Create escrow <span aria-hidden="true">↗</span></button>
+        </form>
+      </section>
+
+      <section class="escrows-section">
+        <div class="section-heading list-heading"><div><p class="eyebrow">Aktivitas kontrak</p><h2>Escrow</h2></div><button id="refresh-button" class="button button-quiet" type="button" title="Refresh daftar" aria-label="Refresh daftar">↻ <span>Refresh</span></button></div>
+        <div id="escrow-list" class="escrow-list"><div class="empty-state">Hubungkan wallet untuk melihat escrow.</div></div>
+      </section>
+      <footer><span>AgentEscrow</span><span>tUSD8 · 6 desimal</span><a href="https://explorer-test.qday.info" target="_blank" rel="noreferrer">Aevum Explorer ↗</a></footer>
+    </main>
+  </body>
+</html>
